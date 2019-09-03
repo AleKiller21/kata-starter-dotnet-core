@@ -24,9 +24,9 @@ namespace Kata
             
             var numbers = input.Split(delimiters, StringSplitOptions.None).Select(int.Parse).ToArray();
             var negatives = numbers.Where(number => number < 0).ToArray();
-            if (negatives.Count() == 1)
+            if (negatives.Any())
             {
-                throw new Exception($"negatives not allowed: {negatives.First()}");
+                throw new Exception($"negatives not allowed: {string.Join(", ", negatives)}");
             }
             return numbers.Sum();
 
