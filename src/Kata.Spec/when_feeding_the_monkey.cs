@@ -116,9 +116,22 @@ namespace Kata.Spec
         static Calculator _systemUnderTest;
         static Exception _result;
     }
+
+    public class when_the_user_input_contains_multiple_negative_numbers_mixed_with_positive_numbers_when_calculating_the_sum
+    {
+        Establish _context = () =>
+        {
+            _systemUnderTest = new Calculator();
+        };
+
+        private Because of = () => { _result = Catch.Exception(() => _systemUnderTest.Add("1,-2,-3")); };
+
+        It should_throw_an_exception_with_all_the_negative_numbers = () => { _result.Message.Should().Be("negatives not allowed: -2, -3"); };
+        private static Calculator _systemUnderTest;
+        private static Exception _result;
+    }
 }
 
-// 7. Given the user input contains one negative number when calculating the sum then it should throw an exception "negatives not allowed: x" (where x is the negative number).
 // 8. Given the user input contains multiple negative numbers mixed with positive numbers when calculating the sum then it should throw an exception "negatives not allowed: x, y, z" (where x, y, z are only the negative numbers). 
 // 9. Given the user input contains numbers larger than 1000 when calculating the sum it should only sum the numbers less than 1001. (example 2 + 1001 = 2)
 // 10. Given the user input is multiple numbers with a custom multi-character delimiter when calculating the sum then it should return the sum of all the numbers. (example: “//[***]\n1***2***3” should return 6)
