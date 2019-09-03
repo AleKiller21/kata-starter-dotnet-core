@@ -11,7 +11,7 @@ namespace Kata
                 return 0;
             }
 
-            var numbers = userInput.Split(',').Select(int.Parse);
+            var numbers = userInput.Split(new []{',', '\n'}).Select(int.Parse);
             return numbers.Sum();
 
         }
