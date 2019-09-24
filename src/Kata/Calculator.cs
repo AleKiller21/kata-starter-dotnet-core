@@ -19,7 +19,10 @@ namespace Kata
                 var parsedInput = userInput.Split('\n');
                 var delimiterSection = parsedInput.First();
                 values = parsedInput.Last();
-                var delimiter = delimiterSection.Replace("//", "");
+                var delimiter = delimiterSection
+                    .Replace("//", "")
+                    .Replace("[", "")
+                    .Replace("]", "");
                 delimiters = new[] {delimiter};
             }
 
