@@ -22,8 +22,8 @@ namespace Kata
                 var delimiter = delimiterSection
                     .Replace("//", "")
                     .Replace("[", "")
-                    .Replace("]", "");
-                delimiters = new[] {delimiter};
+                    .Split("]");
+                delimiters = delimiter;
             }
 
             var numbers = values
