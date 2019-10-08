@@ -12,10 +12,18 @@ namespace Kata
                 return 0;
             }
 
-            var numbers = userInput
-                .Split(new []{",", "\n"}, StringSplitOptions.None)
-                .Select(int.Parse)
-                .ToArray();
+            var delimiters = new[] {",", "\n"};
+            var numberSection = userInput;
+            
+            if (userInput.StartsWith("//"))
+            {
+                var parsedInput = userInput.Split("\n");
+                var delimiterSection = parsedInput[0];
+                numberSection = parsedInput[1];
+                delimiters = new[] {delimiterSection.Replace("//", "")};
+            }
+
+            var numbers = numberSection.Split(delimiters, StringSplitOptions.None).Select(int.Parse).ToArray();
 
             return numbers.Sum();
         }
