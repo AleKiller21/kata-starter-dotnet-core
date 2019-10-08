@@ -111,9 +111,23 @@ namespace Kata.Spec
 
         Because of = () => { _result = Catch.Exception(() => _systemUnderTest.Add("1,-3,5")); };
 
-        It should_throw_an_exception = () => { _result.Should().Be("negatives not allowed: -3"); };
+        It should_throw_an_exception = () => { _result.Message.Should().Be("negatives not allowed: -3"); };
         private static Calculator _systemUnderTest;
         private static Exception _result;
+    }
+
+    public class when_user_input_contains_several_negative_numbers
+    {
+        Establish _context = () =>
+        {
+            _systemUnderTest = new Calculator();
+        };
+
+        Because of = () => { _result = Catch.Exception(() => _systemUnderTest.Add("-1,2,-3,-4")); };
+
+        It should_throw_an_exception_with_all_negatives = () => { _result.Message.Should().Be("negatives not allowed: -1, -3, -4"); };
+        static Calculator _systemUnderTest;
+        static Exception _result;
     }
 }
 
