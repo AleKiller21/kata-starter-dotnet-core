@@ -20,7 +20,12 @@ namespace Kata
             {
                 var parts = userInput.Split("\n");
 
-                separators = new[] {parts.First().Replace("//", "")};
+                separators = new[] {parts
+                    .First()
+                    .Replace("//", "")
+                    .Replace("[", "")
+                    .Replace("]", "")
+                };
                 userInput = parts.Last();
             }
             
