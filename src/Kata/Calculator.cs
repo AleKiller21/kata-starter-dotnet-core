@@ -2,9 +2,14 @@ namespace Kata
 {
     public class Calculator
     {
-        public int Add()
+        public int Add(string input = "")
         {
-            return -1;
+            if (string.IsNullOrEmpty(input))
+            {
+                return 0;
+            }
+
+            return int.Parse(input);
         }
     }
 }
