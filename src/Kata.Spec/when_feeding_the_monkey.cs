@@ -123,15 +123,28 @@ namespace Kata.Spec
             _systemUnderTest = new Calculator();
         };
 
-        private Because of = () => { Catch.Exception(() => _systemUnderTest.Add("1,2,-3,-4,-5")); };
+        private Because of = () => { _result = Catch.Exception(() => _systemUnderTest.Add("1,2,-3,-4,-5")); };
 
         private It should_throw_an_exception = () => { _result.Message.Should().Be("negatives not allowed: -3, -4, -5"); };
         private static Calculator _systemUnderTest;
         private static Exception _result;
     }
+
+    public class when_using_numbers_larger_than_1000
+    {
+        Establish _context = () =>
+        {
+            _systemUnderTest = new Calculator();
+        };
+
+        Because of = () => { _result = _systemUnderTest.Add("1,2,1001"); };
+
+        It should_ignore_numbers_larger_than_1000 = () => { _result.Should().Be(3); };
+        static Calculator _systemUnderTest;
+        static int _result;
+    }
 }
 
-// 8. Given the user input contains multiple negative numbers mixed with positive numbers when calculating the sum then it should throw an exception "negatives not allowed: x, y, z" (where x, y, z are only the negative numbers). 
 // 9. Given the user input contains numbers larger than 1000 when calculating the sum it should only sum the numbers less than 1001. (example 2 + 1001 = 2)
 // 10. Given the user input is multiple numbers with a custom multi-character delimiter when calculating the sum then it should return the sum of all the numbers. (example: “//[***]\n1***2***3” should return 6)
 // 11. Given the user input is multiple numbers with multiple custom delimiters when calculating the sum then it should return the sum of all the numbers. (example “//[*][%]\n1*2%3” should return 6)
