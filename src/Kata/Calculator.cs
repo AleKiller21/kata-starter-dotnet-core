@@ -31,7 +31,7 @@ namespace Kata
 
             if (negatives.Any())
             {
-                throw new Exception($"negatives not allowed: {negatives.First()}");
+                throw new Exception($"negatives not allowed: {string.Join(", ", negatives)}");
             }
 
             return numbers.Sum();
