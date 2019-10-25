@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 
 namespace Kata
@@ -12,7 +13,7 @@ namespace Kata
             }
 
             var numbers = userInput
-                .Split(",")
+                .Split(new []{",", "\n"}, StringSplitOptions.None)
                 .Select(int.Parse)
                 .ToArray();
             
