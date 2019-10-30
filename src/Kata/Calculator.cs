@@ -29,7 +29,10 @@ namespace Kata
                 userInput = parts.Last();
             }
             
-            var numbers = userInput.Split(delimiters, StringSplitOptions.None).Select(int.Parse).ToArray();
+            var numbers = userInput.Split(delimiters, StringSplitOptions.None)
+                .Select(int.Parse)
+                .Where(n => n < 1001)
+                .ToArray();
             
             var negatives = numbers.Where(n => n < 0);
             if (negatives.Any())
