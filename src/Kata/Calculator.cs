@@ -24,6 +24,8 @@ namespace Kata
                     parts
                         .First()
                         .Replace("//", "")
+                        .Replace("[", "")
+                        .Replace("]", "")
                 };
 
                 userInput = parts.Last();
