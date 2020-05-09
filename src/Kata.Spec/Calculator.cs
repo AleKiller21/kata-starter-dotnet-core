@@ -1,15 +1,18 @@
-﻿namespace Kata.Spec
+﻿using System;
+using System.Linq;
+
+namespace Kata.Spec
 {
     public class Calculator
     {
-        public int Sum(string number = "")
+        public int Sum(string input = "")
         {
-            if (string.IsNullOrEmpty(number))
+            if (string.IsNullOrEmpty(input))
             {
                 return 0;
             }
 
-            return int.Parse(number);
+            return input.Split(',').Sum(int.Parse);
         }
     }
 }
