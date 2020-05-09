@@ -12,7 +12,7 @@ namespace Kata.Spec
                 return 0;
             }
 
-            var numArray = input.Split(',').Select(int.Parse);
+            var numArray = input.Split(new[] {',', '\n'}, StringSplitOptions.None).Select(int.Parse);
             return numArray.Sum();
         }
     }
