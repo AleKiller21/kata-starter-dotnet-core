@@ -19,13 +19,10 @@ namespace Kata.Spec
             {
                 var customInput = input.Split('\n');
                 var customDelimiterSection = customInput.First();
-                delimiters = new[]
-                {
-                    customDelimiterSection
-                        .Replace("//", "")
-                        .Replace("[", "")
-                        .Replace("]", "")
-                };
+                delimiters = customDelimiterSection
+                    .Replace("//", "")
+                    .Replace("[", "")
+                    .Split(']');
                 numbers = customInput.Last();
             }
 
