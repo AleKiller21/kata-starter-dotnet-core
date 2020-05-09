@@ -22,7 +22,13 @@ namespace Kata.Spec
                 numbers = customInput.Last();
             }
 
-            var numArray = numbers.Split(delimiters, StringSplitOptions.None).Select(int.Parse);
+            var numArray = numbers.Split(delimiters, StringSplitOptions.None).Select(int.Parse).ToArray();
+            var negatives = numArray.Where(num => num < 0).ToArray();
+
+            if (negatives.Count() == 1)
+            {
+                throw new Exception($"negatives not allowed: {negatives.First()}");
+            }
             return numArray.Sum();
         }
     }
