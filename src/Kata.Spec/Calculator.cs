@@ -22,7 +22,11 @@ namespace Kata.Spec
                 numbers = customInput.Last();
             }
 
-            var numArray = numbers.Split(delimiters, StringSplitOptions.None).Select(int.Parse).ToArray();
+            var numArray = numbers
+                .Split(delimiters, StringSplitOptions.None)
+                .Select(int.Parse)
+                .Where(n => n < 1001)
+                .ToArray();
             var negatives = numArray.Where(num => num < 0).ToArray();
 
             if (negatives.Any())
