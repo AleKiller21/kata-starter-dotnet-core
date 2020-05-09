@@ -2,9 +2,14 @@
 {
     public class Calculator
     {
-        public int Sum()
+        public int Sum(string number = "")
         {
-            return 0;
+            if (string.IsNullOrEmpty(number))
+            {
+                return 0;
+            }
+
+            return int.Parse(number);
         }
     }
 }
