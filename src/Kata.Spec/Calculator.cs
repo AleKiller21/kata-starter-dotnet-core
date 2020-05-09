@@ -12,13 +12,20 @@ namespace Kata.Spec
                 return 0;
             }
 
-            var delimiters = new[] {',', '\n'};
+            var delimiters = new[] {",", "\n"};
             var numbers = input;
 
             if (input.StartsWith("//"))
             {
                 var customInput = input.Split('\n');
-                delimiters = new []{customInput.First().Last()};
+                var customDelimiterSection = customInput.First();
+                delimiters = new[]
+                {
+                    customDelimiterSection
+                        .Replace("//", "")
+                        .Replace("[", "")
+                        .Replace("]", "")
+                };
                 numbers = customInput.Last();
             }
 
