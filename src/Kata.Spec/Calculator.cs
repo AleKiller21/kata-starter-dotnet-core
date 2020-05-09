@@ -12,7 +12,17 @@ namespace Kata.Spec
                 return 0;
             }
 
-            var numArray = input.Split(new[] {',', '\n'}, StringSplitOptions.None).Select(int.Parse);
+            var delimiters = new[] {',', '\n'};
+            var numbers = input;
+
+            if (input.StartsWith("//"))
+            {
+                var customInput = input.Split('\n');
+                delimiters = new []{customInput.First().Last()};
+                numbers = customInput.Last();
+            }
+
+            var numArray = numbers.Split(delimiters, StringSplitOptions.None).Select(int.Parse);
             return numArray.Sum();
         }
     }

@@ -72,6 +72,17 @@ namespace Kata.Spec
         private static Calculator _systemUnderTest;
         private static int _result;
     }
+
+    public class when_user_input_is_multiple_numbers_with_a_custom_single_character_delimiter
+    {
+        Establish _context = () => { _systemUnderTest = new Calculator(); };
+
+        Because of = () => { _result = _systemUnderTest.Sum("//;\n1;2"); };
+
+        It should_return_the_sum_of_all_numbers = () => { _result.Should().Be(3); };
+        private static Calculator _systemUnderTest;
+        private static int _result;
+    }
 }
 
 
